@@ -40,7 +40,7 @@ const tableHeaders = [
     },
 ]
 
-const Table = ({fetchData,fetchAppData}) => {
+const Table = ({fetchData,fetchAppData,buttonData}) => {
 
     const getInMillion = (value) => {
         const initialValue = 0;
@@ -77,39 +77,41 @@ const Table = ({fetchData,fetchAppData}) => {
   return (
     <Container>
        {
-        fetchData.length !== 0 &&  <table>
+         fetchData.length !== 0 &&  <table>
         <tr>
-            {tableHeaders.map((item) => {
-                return <th>{item.name}</th>
+            {tableHeaders.map((item,index) => {
+                return <>
+                {!buttonData[index].selected && <th>{item.name}</th>}
+                </>
             })}
         </tr>
         <tr>
-    <td>{fetchData.data?.length}</td>
-    <td>{fetchAppData.length}</td>
-    <td>{adRequests || null} M</td>
-    <td>{adResponse || null} M</td>
-    <td>{impression || null} M</td>
-    <td>{clicks || null} M</td>
-    <td>$ {Math.round(revenue || null)}</td>
-    <td>{fillRate || null} %</td>
-    <td>{Math.round(ctr || null)} %</td>
+            {!buttonData[0].selected &&  <td>{ fetchData.data?.length}</td>}
+    {!buttonData[1].selected && <td>{fetchAppData.length}</td>}
+    {!buttonData[2].selected && <td>{ adRequests || null} M</td>}
+    {!buttonData[3].selected && <td>{ adResponse || null} M</td>}
+    {!buttonData[4].selected && <td>{ impression || null} M</td>}
+    {!buttonData[5].selected && <td>{ clicks || null} M</td>}
+    {!buttonData[6].selected && <td>$ {revenue || null}</td>}
+   {!buttonData[7].selected && <td>{ Math.round(fillRate || null)} %</td>}
+    {!buttonData[8].selected && <td>{ Math.round(ctr || null)} %</td>}
     </tr>
       
-{fetchData.data?.map((item) => {
+{fetchData.data?.map((item,index) => {
     const filterName = fetchAppData.filter((app) =>  app.app_id == item.app_id)
     const appName = filterName[0].app_name
     const date = item.date.slice(0,10)
         console.log(date);
-    return <tr>
-    <td>{date}</td>
-    <td>{appName}</td>
-    <td>{item.requests}</td>
-    <td>{item.responses}</td>
-    <td>{item.impressions}</td>
-    <td>{item.clicks}</td>
-    <td>$ {Math.round(item.revenue)}</td>
-    <td>{Math.round(item.requests%item.responses*100)} %</td>
-    <td>{Math.round(item.clicks/item.impressions*100)} %</td>
+    return <tr key={item.id}>
+    {!buttonData[0].selected && <td>{date}</td>}
+    {!buttonData[1].selected && <td>{appName}</td>}
+    {!buttonData[2].selected && <td>{item.requests}</td>}
+    {!buttonData[3].selected && <td>{item.responses}</td>}
+    {!buttonData[4].selected && <td>{item.impressions}</td>}
+    {!buttonData[5].selected && <td>{item.clicks}</td>}
+    {!buttonData[6].selected && <td>$ {Math.round(item.revenue)}</td>}
+    {!buttonData[7].selected && <td>{Math.round(item.requests/item.responses*100)} %</td>}
+    {!buttonData[8].selected && <td>{Math.round(item.clicks/item.impressions*100)} %</td>}
     </tr>
 })}
 

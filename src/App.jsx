@@ -5,6 +5,7 @@ import styled from "styled-components";
 import DateComponent from "./components/DateComponent";
 import DimensionsAndMetric from "./components/DimensionsAndMetric";
 import Table from "./components/Table";
+import { data } from "./components/buttonData";
 
 const Heading = styled.h2``;
 
@@ -13,6 +14,7 @@ function App() {
   const [endDate, setEndDate] = useState(new Date("2021-05-01"));
   const [fetchData, setFetchData] = useState([])
   const [fetchAppData, setfetchAppData] = useState([])
+  const [buttonData, setButtonData] = useState(data);
   
   useEffect(() => {
     const fetchApi = async () => {
@@ -40,8 +42,8 @@ function App() {
         endDate={endDate}
         setEndDate={setEndDate}
       />
-      <DimensionsAndMetric />
-      <Table fetchData={fetchData} fetchAppData={fetchAppData}/>
+      <DimensionsAndMetric buttonData={buttonData} setButtonData={setButtonData}/>
+      <Table fetchData={fetchData} fetchAppData={fetchAppData} buttonData={buttonData}/>
     </div>
   );
 }
