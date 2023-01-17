@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import './App.css' 
 import styled from 'styled-components'
 import DateComponent from './components/DateComponent'
+import DimensionsAndMetric from './components/DimensionsAndMetric'
 
 const Heading = styled.h2`
   
@@ -20,6 +21,7 @@ function App() {
       endDate={endDate}
       setEndDate={setEndDate}
      />
+     <DimensionsAndMetric />
     </div>
   )
 }
