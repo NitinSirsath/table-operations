@@ -18,3 +18,9 @@ export const ButtonContainer = styled.div`
     margin-top: 20px;
     gap: 20px;
 `
+
+export const HeadingContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`

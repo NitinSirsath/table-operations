@@ -3,12 +3,21 @@ import {
   Container,
   ButtonContainer,
   ButtonWrapper,
+  HeadingContainer
 } from "../styles/dimensionsAndMetric.style";
 
 import Button from "@mui/material/Button";
+import SettingsIcon from '@mui/icons-material/Settings';
+
 
 const DimensionsAndMetric = ({buttonData,setButtonData}) => {
-    
+
+    const [showSettings, setShowSettings] = useState(false);
+
+    const handleShowSettings = () => {
+        setShowSettings(!showSettings)
+    }
+
   const handleClick = (id) => {
     const newData = buttonData.map((button) => {
       if (button.id === id) {
@@ -18,11 +27,16 @@ const DimensionsAndMetric = ({buttonData,setButtonData}) => {
     });
     setButtonData(newData);
   };
-  console.log(buttonData);
+
+
   return (
     <Container>
-      <h3>Dimensions and Metrics</h3>
-      <ButtonWrapper>
+     <HeadingContainer>
+     <h3 style={{color:"grey"}}>Dimensions and Metrics</h3>
+     <Button variant="outlined" onClick={()=>handleShowSettings()} endIcon={<SettingsIcon />}>{showSettings? 'Close Settings':'open Settings'}</Button>
+     </HeadingContainer>
+      {showSettings && (
+        <ButtonWrapper>
         <ButtonContainer>
           {buttonData.map((button, index) => {
             return (
@@ -37,10 +51,11 @@ const DimensionsAndMetric = ({buttonData,setButtonData}) => {
           })}
         </ButtonContainer>
 
-        <Button variant="outlined" color="error">
+        {/* <Button variant="outlined" color="error">
           Apply Changes
-        </Button>
+        </Button> */}
       </ButtonWrapper>
+      )}
     </Container>
   );
 };
