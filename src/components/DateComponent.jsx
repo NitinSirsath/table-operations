@@ -28,7 +28,7 @@ const DateComponent = ({startDate,endDate,setStartDate, setFetchData,setEndDate,
         
     }
   
-  console.log(fetchAppData);
+  
   return (
     <Container> 
         {/* <LocalizationProvider dateAdapter={AdapterDateFns}>

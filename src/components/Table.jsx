@@ -82,7 +82,7 @@ const Table = ({ fetchData, fetchAppData, buttonData }) => {
   );
 
   const handleFilter = () => {
-    console.log('hello')
+    
   }
 
   return (
@@ -130,7 +130,7 @@ const Table = ({ fetchData, fetchAppData, buttonData }) => {
             );
             const appName = filterName[0].app_name;
             const date = item.date.slice(0, 10);
-            console.log(date);
+            
             return (
               <TableValueContainer key={item.id}>
                 {!buttonData[0].selected && <td>{date}</td>}
