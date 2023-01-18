@@ -19,7 +19,7 @@ function App() {
   useEffect(() => {
     const fetchApi = async () => {
       const response = await fetch(
-        'http://go-dev.greedygame.com/v3/dummy/apps'
+        `${import.meta.env.VITE_API_ENDPOINT_APP}`
       );
       const data = await response.json();
       setfetchAppData(data.data);

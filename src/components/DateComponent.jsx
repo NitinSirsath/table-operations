@@ -19,8 +19,10 @@ const DateComponent = ({startDate,endDate,setStartDate, setFetchData,setEndDate,
   const arr2 = endDate.toISOString().split("T")[0].split("-");
   const finalEndDate = `${arr2[0]}-${arr2[1]}-${arr2[2]}`;
 
+
+    //url for app data = http://go-dev.greedygame.com/v3/dummy/report?startDate=2021-09-01&endDate=2021-09-30
     const handleDateChange = async () => {
-        const response = await fetch(`http://go-dev.greedygame.com/v3/dummy/report?startDate=${finalStartDate}&endDate=${finalEndDate}`)
+        const response = await fetch(`${import.meta.env.VITE_API_ENDPOINT}startDate=${finalStartDate}&endDate=${finalEndDate}`)
         const data = await response.json()
         setFetchData(data)
         
